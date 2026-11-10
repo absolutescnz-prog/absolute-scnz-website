@@ -26,69 +26,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  const track = document.getElementById('centerTrack');
+  if (!track) { console.error('centerTrack nahi mila, HTML ka id check karo'); return; }
 
-    const track = document.getElementById('centerTrack');
+  const total    = track.children.length;   // 10
+  const delay    = 3000;                    // har photo 3 second
+  const duration = 700;                     // slide hone ka time (ms)
+  let index = 0;
+  let timer = null;
 
-    if (!track) return;
+  // Smooth loop ke liye pehli slide ki copy end mein
+  track.appendChild(track.firstElementChild.cloneNode(true));
 
-    const slides = track.children;
-    const total = slides.length;
+  const next = () => {
+    index++;
+    track.style.transition = transform ${duration}ms ease-in-out;
+    track.style.transform  = translateX(-${index * 100}%);
+  };
 
-    if (total !== 3) {
-        console.warn('Slider requires exactly 3 images.');
+  track.addEventListener('transitionend', () => {
+    if (index >= total) {
+      track.style.transition = 'none';
+      index = 0;
+      track.style.transform  = 'translateX(0)';
     }
+  });
 
-    if (total <= 1) return;
+  const start = () => { stop(); timer = setInterval(next, delay); };
+  const stop  = () => { if (timer) clearInterval(timer); timer = null; };
 
-    const delay = 3000;       // 3 seconds per image
-    const duration = 600;    // Smooth transition
-
-    let index = 0;
-    let autoTimer = null;
-
-    // Initial position
-    track.style.transform = 'translateX(0%)';
-    track.style.transition = `transform ${duration}ms ease-in-out`;
-
-    // Next image
-    function nextSlide() {
-
-        index++;
-
-        if (index >= total) {
-            index = 0;
-        }
-
-        track.style.transform = `translateX(-${index * 100}%)`;
-
-    }
-
-    // Start slider
-    function startSlider() {
-
-        if (autoTimer !== null) return;
-
-        autoTimer = setInterval(nextSlide, delay);
-
-    }
-
-    // Stop slider
-    function stopSlider() {
-
-        clearInterval(autoTimer);
-        autoTimer = null;
-
-    }
-
-    // Pause on hover
-    const slider = document.getElementById('centerSlider');
-
-    slider.addEventListener('mouseenter', stopSlider);
-    slider.addEventListener('mouseleave', startSlider);
-
-    // Start automatically
-    startSlider();
-
+  start();
+ 
 });
 
 

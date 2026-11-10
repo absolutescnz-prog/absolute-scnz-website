@@ -24,40 +24,71 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+
 document.addEventListener('DOMContentLoaded', () => {
+
     const track = document.getElementById('centerTrack');
+
     if (!track) return;
 
-    // Sirf original slides count karo
     const slides = track.children;
-    const total = slides.length; // 3
+    const total = slides.length;
+
+    if (total !== 3) {
+        console.warn('Slider requires exactly 3 images.');
+    }
+
     if (total <= 1) return;
 
-    const delay = 3000;    // 3 sec har image
-    const duration = 600;  // transition time (ms)
-    let index = 0;
+    const delay = 3000;       // 3 seconds per image
+    const duration = 600;    // Smooth transition
 
-    // Transition set kar do
+    let index = 0;
+    let autoTimer = null;
+
+    // Initial position
+    track.style.transform = 'translateX(0%)';
     track.style.transition = `transform ${duration}ms ease-in-out`;
 
+    // Next image
     function nextSlide() {
-        // Har baar 0 -> 1 -> 2 -> 0 loop chalega
-        index = (index + 1) % total;
+
+        index++;
+
+        if (index >= total) {
+            index = 0;
+        }
+
         track.style.transform = `translateX(-${index * 100}%)`;
+
     }
 
-    // Purana koi bhi timer agar chal raha ho toh destroy karo
-    if (window.sliderAutoTimer) {
-        clearInterval(window.sliderAutoTimer);
-    }
-    
-    window.sliderAutoTimer = setInterval(nextSlide, delay);
+    // Start slider
+    function startSlider() {
 
-    // Hover par pause
-    track.addEventListener('mouseenter', () => clearInterval(window.sliderAutoTimer));
-    track.addEventListener('mouseleave', () => {
-        window.sliderAutoTimer = setInterval(nextSlide, delay);
-    });
+        if (autoTimer !== null) return;
+
+        autoTimer = setInterval(nextSlide, delay);
+
+    }
+
+    // Stop slider
+    function stopSlider() {
+
+        clearInterval(autoTimer);
+        autoTimer = null;
+
+    }
+
+    // Pause on hover
+    const slider = document.getElementById('centerSlider');
+
+    slider.addEventListener('mouseenter', stopSlider);
+    slider.addEventListener('mouseleave', startSlider);
+
+    // Start automatically
+    startSlider();
+
 });
 
 

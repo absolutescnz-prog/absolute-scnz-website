@@ -24,41 +24,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+document.addEventListener("DOMContentLoaded", function () {
 
-document.addEventListener('DOMContentLoaded', () => {
-  const track = document.getElementById('centerTrack');
-  if (!track) { console.error('centerTrack nahi mila, HTML ka id check karo'); return; }
+    const slides = document.querySelectorAll("#slider .slide");
 
-  const total    = track.children.length;   // 10
-  const delay    = 3000;                    // har photo 3 second
-  const duration = 700;                     // slide hone ka time (ms)
-  let index = 0;
-  let timer = null;
+    let currentIndex = 0;
 
-  // Smooth loop ke liye pehli slide ki copy end mein
-  track.appendChild(track.firstElementChild.cloneNode(true));
+    function showNextSlide() {
 
-  const next = () => {
-    index++;
-    track.style.transition = transform ${duration}ms ease-in-out;
-    track.style.transform  = translateX(-${index * 100}%);
-  };
+        // Current image hide
 
-  track.addEventListener('transitionend', () => {
-    if (index >= total) {
-      track.style.transition = 'none';
-      index = 0;
-      track.style.transform  = 'translateX(0)';
+        slides[currentIndex].classList.remove("opacity-100");
+
+        slides[currentIndex].classList.add("opacity-0");
+
+        // Next image select
+
+        currentIndex = (currentIndex + 1) % slides.length;
+
+        // Next image show
+
+        slides[currentIndex].classList.remove("opacity-0");
+
+        slides[currentIndex].classList.add("opacity-100");
+
     }
-  });
 
-  const start = () => { stop(); timer = setInterval(next, delay); };
-  const stop  = () => { if (timer) clearInterval(timer); timer = null; };
+    // Automatically change image every 6 seconds
 
-  start();
- 
+    setInterval(showNextSlide, 6000);
+
 });
-
 
 
 

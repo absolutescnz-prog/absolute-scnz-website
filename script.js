@@ -28,48 +28,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const track = document.getElementById('centerTrack');
     if (!track) return;
 
-    const originalSlides = Array.from(track.children);
-    const total = originalSlides.length; // Abhi 3 hai
+    // Sirf original slides count karo
+    const slides = track.children;
+    const total = slides.length; // 3
     if (total <= 1) return;
 
     const delay = 3000;    // 3 sec har image
-    const duration = 700;  // transition time (ms)
+    const duration = 600;  // transition time (ms)
     let index = 0;
-    let timer = null;
 
-    // Clone pehli slide end mein
-    track.appendChild(track.firstElementChild.cloneNode(true));
+    // Transition set kar do
+    track.style.transition = `transform ${duration}ms ease-in-out`;
 
-    const next = () => {
-        index++;
-        track.style.transition = `transform ${duration}ms ease-in-out`;
+    function nextSlide() {
+        // Har baar 0 -> 1 -> 2 -> 0 loop chalega
+        index = (index + 1) % total;
         track.style.transform = `translateX(-${index * 100}%)`;
+    }
 
-        // Jab clone (index == total) par slide ho jaye:
-        if (index === total) {
-            setTimeout(() => {
-                track.style.transition = 'none';
-                index = 0;
-                track.style.transform = 'translateX(0)';
-            }, duration);
-        }
-    };
+    // Purana koi bhi timer agar chal raha ho toh destroy karo
+    if (window.sliderAutoTimer) {
+        clearInterval(window.sliderAutoTimer);
+    }
+    
+    window.sliderAutoTimer = setInterval(nextSlide, delay);
 
-    const start = () => {
-        stop();
-        timer = setInterval(next, delay);
-    };
-
-    const stop = () => {
-        if (timer) clearInterval(timer);
-        timer = null;
-    };
-
-    // User hover kare toh slider pause ho jaye
-    track.addEventListener('mouseenter', stop);
-    track.addEventListener('mouseleave', start);
-
-    start();
+    // Hover par pause
+    track.addEventListener('mouseenter', () => clearInterval(window.sliderAutoTimer));
+    track.addEventListener('mouseleave', () => {
+        window.sliderAutoTimer = setInterval(nextSlide, delay);
+    });
 });
 
 

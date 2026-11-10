@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
         slides[currentIndex].classList.add("opacity-0");
 
         // Next image select
-        currentIndex = (currentIndex) % slides.length;
+        currentIndex = (currentIndex + 1) % slides.length;
 
         // Next image show
         slides[currentIndex].classList.remove("opacity-0");

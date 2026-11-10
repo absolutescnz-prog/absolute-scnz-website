@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    // Automatically change image every 4 seconds
-    setInterval(showNextSlide, 3000);
+    // Automatically change image every 6 seconds
+    setInterval(showNextSlide, 6000);
 
 });
 

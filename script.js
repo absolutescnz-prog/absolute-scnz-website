@@ -1,29 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
+
     const slides = document.querySelectorAll("#slider .slide");
-    
-    // Agar slides nahi mili ya sirf ek slide hai toh execute na kare
-    if (!slides.length) return;
 
     let currentIndex = 0;
 
     function showNextSlide() {
+
         // Current image hide
         slides[currentIndex].classList.remove("opacity-100");
         slides[currentIndex].classList.add("opacity-0");
 
         // Next image select
-        currentIndex = (currentIndex + 1) % slides.length;
+        currentIndex = (currentIndex) % slides.length;
 
         // Next image show
         slides[currentIndex].classList.remove("opacity-0");
         slides[currentIndex].classList.add("opacity-100");
+
     }
 
-    // Purana interval clear karke single timer lagayein
-    if (window.sliderInterval) {
-        clearInterval(window.sliderInterval);
-    }
-    window.sliderInterval = setInterval(showNextSlide, 6000);
+    // Automatically change image every 6 seconds
+    setInterval(showNextSlide, 6000);
+
 });
 
 document.addEventListener('DOMContentLoaded', () => {

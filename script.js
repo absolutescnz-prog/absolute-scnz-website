@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const slides = document.querySelectorAll("#slider .slide");
+    const slides = document.querySelectorAll("#centerSlider .slide");
 
     let currentIndex = 0;
 

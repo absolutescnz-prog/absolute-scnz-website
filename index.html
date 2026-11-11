@@ -234,71 +234,133 @@
 
 
 <section id="centerSlider"
-    class="w-full min-h-screen bg-black flex items-center justify-center">
+    class="relative w-full overflow-hidden bg-[#ebebeb] py-4 sm:py-6 scroll-mt-[80px]">
 
-    <div id="sliderWindow"
-        class="relative w-[90vw] md:w-[50vw] h-[50vh] overflow-hidden rounded-lg">
+    <div id="centerTrack" class="flex w-full">
 
-        <!-- SLIDER TRACK -->
-        <div id="sliderTrack"
-            class="flex h-full transition-transform duration-700 ease-in-out">
-
-            <!-- IMAGE 1 -->
-            <div class="slide min-w-full h-full shrink-0">
-                <img src="https://res.cloudinary.com/xabovopu/image/upload/v1794340361/6.jpg"
-                    class="w-full h-full object-cover"
-                    alt="Slide 1">
-            </div>
-
-            <!-- IMAGE 2 -->
-            <div class="slide min-w-full h-full shrink-0">
-                <img src="https://res.cloudinary.com/xabovopu/image/upload/v1794340361/9.jpg"
-                    class="w-full h-full object-cover"
-                    alt="Slide 2">
-            </div>
-
-            <!-- IMAGE 3 -->
-            <div class="slide min-w-full h-full shrink-0">
-                <img src="https://res.cloudinary.com/xabovopu/image/upload/v1794340361/7.jpg"
-                    class="w-full h-full object-cover"
-                    alt="Slide 3">
-            </div>
-
+        <!-- PHOTO 1 -->
+        <div class="flex min-w-full shrink-0 justify-center px-3 sm:px-4">
+            <a href="https://drive.google.com/drive/folders/1WJ6-X4TZXTZ_u4TzxV8iaSulPfc9v_8h?usp=sharing"
+               target="_blank"
+               class="block w-full max-w-[900px]">
+                <img src="https://res.cloudinary.com/xabovopu/image/upload/v1793839783/1.jpg"
+                     alt="Photo 1"
+                     class="w-full aspect-[4/3] object-cover rounded-sm">
+            </a>
         </div>
 
-        <!-- PREVIOUS BUTTON -->
-        <button type="button" id="prevBtn"
-            class="absolute z-30 left-3 top-1/2 -translate-y-1/2
-            bg-black/70 text-white w-12 h-12 rounded-full
-            flex items-center justify-center text-2xl cursor-pointer">
-            &#10094;
-        </button>
+        <!-- PHOTO 2 -->
+        <div class="flex min-w-full shrink-0 justify-center px-3 sm:px-4">
+            <a href="https://drive.google.com/drive/folders/1eQcjEXw4wS6OfT33v3hTavW5f0I29AsB?usp=sharing"
+               target="_blank"
+               class="block w-full max-w-[900px]">
+                <img src="https://res.cloudinary.com/xabovopu/image/upload/v1793839785/2.jpg"
+                     alt="Photo 2"
+                     class="w-full aspect-[4/3] object-cover rounded-sm">
+            </a>
+        </div>
 
-        <!-- NEXT BUTTON -->
-        <button type="button" id="nextBtn"
-            class="absolute z-30 right-3 top-1/2 -translate-y-1/2
-            bg-black/70 text-white w-12 h-12 rounded-full
-            flex items-center justify-center text-2xl cursor-pointer">
-            &#10095;
-        </button>
+        <!-- PHOTO 3 -->
+        <div class="flex min-w-full shrink-0 justify-center px-3 sm:px-4">
+<a href="https://drive.google.com/drive/folders/1A9cVwAsOBM-hi_cw95sxAuukGIt83WJ5?usp=sharing"
+               target="_blank"
+               class="block w-full max-w-[900px]">
+            <img src="https://res.cloudinary.com/xabovopu/image/upload/v1793839785/3.jpg"
+                 alt="Photo 3"
+                 class="w-full max-w-[900px] aspect-[4/3] object-cover rounded-sm">
+        </div>
 
-        <!-- CENTER TEXT -->
-        <div class="absolute inset-0 z-20 pointer-events-none
-            flex flex-col items-center justify-center text-center">
+        <!-- PHOTO 4 -->
+        <div class="flex min-w-full shrink-0 justify-center px-3 sm:px-4">
+<a href="https://drive.google.com/drive/folders/14WoMFh9GjUif-Regq9Zc7cKhW1BamL0R?usp=sharing"
+               target="_blank"
+               class="block w-full max-w-[900px]">
+            <img src="https://res.cloudinary.com/xabovopu/image/upload/v1793839783/4.jpg"
+                 alt="Photo 4"
+                 class="w-full max-w-[900px] aspect-[4/3] object-cover rounded-sm">
+                </a>
+        </div>
 
-            <h2 class="text-white text-xl md:text-3xl font-semibold tracking-wider">
-                UNSCRIPTED / RAW / REAL
-            </h2>
+        <!-- PHOTO 5 -->
+        <div class="flex min-w-full shrink-0 justify-center px-3 sm:px-4">
+<a href="https://scnzabsolute.wfolio.pro/disk/2026-09-09-baby-welcome-2cbgtn"
+               target="_blank"
+               class="block w-full max-w-[900px]">
+            <img src="https://res.cloudinary.com/xabovopu/image/upload/v1793839785/5.jpg"
+                 alt="Photo 5"
+                 class="w-full max-w-[900px] aspect-[4/3] object-cover rounded-sm">
+        </div>
 
-            <p class="mt-5 bg-[#0b666a] text-white px-6 py-4
-                text-xs md:text-sm tracking-[3px]">
-                CLICK THE IMAGE FOR YOUR PHOTOS
-            </p>
+        <!-- PHOTO 6 -->
 
+        <div class="flex min-w-full shrink-0 justify-center px-3 sm:px-4">
+<a href="https://absolute-scnz.samaro.ai/raas-garba-2026-oct-2026/gallery/media"
+               target="_blank"
+               class="block w-full max-w-[900px]">
+            <img src="https://res.cloudinary.com/xabovopu/image/upload/v1793839785/6.jpg"
+                 alt="Photo 6"
+                 class="w-full max-w-[900px] aspect-[4/3] object-cover rounded-sm">
+              </a>
+        </div>
+
+        <!-- PHOTO 7 -->
+        <div class="flex min-w-full shrink-0 justify-center px-3 sm:px-4">
+<a href="https://kwikpic-in.app.link/e/hVQoSVVza7b?uCode=Q33YC4"
+               target="_blank"
+               class="block w-full max-w-[900px]">
+            <img src="https://res.cloudinary.com/xabovopu/image/upload/v1793839785/7.jpg"
+                 alt="Photo 7"
+                 class="w-full max-w-[900px] aspect-[4/3] object-cover rounded-sm">
+                 </a>
+        </div>
+
+        <!-- PHOTO 8 -->
+        <div class="flex min-w-full shrink-0 justify-center px-3 sm:px-4">
+<a href="https://scnzabsolute.wfolio.pro/disk/manish-deeksha-dczks1"
+               target="_blank"
+               class="block w-full max-w-[900px]">
+            <img src="https://res.cloudinary.com/xabovopu/image/upload/v1793839784/8.jpg"
+                 alt="Photo 8"
+                 class="w-full max-w-[900px] aspect-[4/3] object-cover rounded-sm">
+                 </a>
+        </div>
+
+        <!-- PHOTO 9 -->
+        <div class="flex min-w-full shrink-0 justify-center px-3 sm:px-4">
+          <a href="https://scnzabsolute.wfolio.pro/disk/2026-07-02-ankur-pragya-0pp70k"
+               target="_blank"
+               class="block w-full max-w-[900px]">
+            <img src="https://res.cloudinary.com/xabovopu/image/upload/v1793839785/9.jpg"
+                 alt="Photo 9"
+                 class="w-full max-w-[900px] aspect-[4/3] object-cover rounded-sm">
+                 </a>
+        </div>
+
+        <!-- PHOTO 10 -->
+        <div class="flex min-w-full shrink-0 justify-center px-3 sm:px-4">
+<a href="https://drive.google.com/drive/folders/14WoMFh9GjUif-Regq9Zc7cKhW1BamL0R?usp=sharing"
+               target="_blank"
+               class="block w-full max-w-[900px]">
+            <img src="https://res.cloudinary.com/xabovopu/image/upload/v1793839783/4.jpg"
+                 alt="Photo 10"
+                 class="w-full max-w-[900px] aspect-[4/3] object-cover rounded-sm">
+                 </a>
         </div>
 
     </div>
 
+    <!-- CENTER TEXT -->
+  <div class="pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center px-3">
+
+  <h2 class="text-center text-xl font-semibold tracking-wider text-white sm:text-2xl md:text-3xl">
+    UNSCRIPTED/RAW/REAL
+  </h2>
+
+  <h3 class="pointer-events-auto mt-5 cursor-pointer bg-[#0b666a] px-8 py-5 text-center text-sm font-medium tracking-[4px] text-white transition-opacity duration-300 hover:opacity-70 sm:text-base md:text-lg">
+  Click The Image For Your Photos  
+</h3>
+
+</div>
 </section>
 
 

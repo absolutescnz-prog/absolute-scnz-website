@@ -233,46 +233,35 @@
 </section>
 
 
-<section id="centerSlider"
-    class="relative w-full overflow-hidden bg-[#ebebeb] py-4 sm:py-6 scroll-mt-[80px]">
+<section id="centerSlider">
 
-    <div id="centerTrack" class="flex w-full">
+ <!-- Poori screen black, slider beech me (50% width & 50% height) -->
+  <div class="h-screen w-screen flex items-center justify-center">
 
-        <!-- PHOTO 1 -->
-        <div class="flex min-w-full shrink-0 justify-center px-3 sm:px-4 ">
-            <a href="https://kwikpic-in.app.link/e/hVQoSVVza7b?uCode=Q33YC4"
-               target="_blank"
-               class="block w-full max-w-[900px]">
-                <img src="https://res.cloudinary.com/xabovopu/image/upload/v1794340361/7.jpg"
-                     alt="Photo 1"
-                     class="w-full aspect-[4/3] object-cover rounded-sm">
-            </a>
-        </div>
+    <div class="relative w-[50vw] h-[50vh] overflow-hidden rounded-lg">
 
-        <!-- PHOTO 2 -->
-        <div class="flex min-w-full shrink-0 justify-center px-3 sm:px-4 ">
-            <a href="https://absolute-scnz.samaro.ai/raas-garba-2026-oct-2026/gallery/media"
-               target="_blank"
-               class="block w-full max-w-[900px]">
-                <img src="https://res.cloudinary.com/xabovopu/image/upload/v1794340361/6.jpg"
-                     alt="Photo 2"
-                     class="w-full aspect-[4/3] object-cover rounded-sm">
-            </a>
-        </div>
+      <!-- Slides track -->
+      <div id="track" class="flex h-full transition-transform duration-500 ease-in-out">
+        <img src="https://picsum.photos/id/1015/1200/800" alt="Slide 1" class="w-full h-full object-cover shrink-0" />
+        <img src="https://picsum.photos/id/1016/1200/800" alt="Slide 2" class="w-full h-full object-cover shrink-0" />
+        <img src="https://picsum.photos/id/1018/1200/800" alt="Slide 3" class="w-full h-full object-cover shrink-0" />
+      </div>
 
-        <!-- PHOTO 3 -->
-        <div class="flex min-w-full shrink-0 justify-center px-3 sm:px-4 ">
-<a href="https://scnzabsolute.wfolio.pro/disk/2026-07-02-ankur-pragya-0pp70k"
-               target="_blank"
-               class="block w-full max-w-[900px]">
-            <img src="https://res.cloudinary.com/xabovopu/image/upload/v1794340361/9.jpg"
-                 alt="Photo 3"
-                 class="w-full max-w-[900px] aspect-[4/3] object-cover rounded-sm">
-        </div>
+      <!-- Left button -->
+      <button id="prev"
+        class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl">
+        &#10094;
+      </button>
 
-    </a>
+      <!-- Right button -->
+      <button id="next"
+        class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl">
+        &#10095;
+      </button>
 
     </div>
+  </div>
+
 
     <!-- CENTER TEXT -->
   <div class="pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center px-3">

@@ -24,76 +24,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-let current = 0;
+const track = document.getElementById("track");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
 
-function showSlide(n) {
-  const slides = document.querySelectorAll(".slide");
+const totalSlides = track.children.length;
+let currentIndex = 0;
 
-  slides.forEach((slide, i) => {
-    slide.classList.toggle("opacity-100", i === n);
-    slide.classList.toggle("opacity-0", i !== n);
-  });
+function updateSlider() {
+  track.style.transform = `translateX(-${currentIndex * 100}%)`;
 }
 
-function nextSlide() {
-  const total = document.querySelectorAll(".slide").length;
-  current = (current + 1) % total;
-  showSlide(current);
-}
+nextBtn.addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % totalSlides;
+  updateSlider();
+});
 
-function prevSlide() {
-  const total = document.querySelectorAll(".slide").length;
-  current = (current - 1 + total) % total;
-  showSlide(current);
-}
-
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const slider = document.getElementById("weddingSlider");
-
-    if (!slider) return;
-
-    // SETTINGS
-    const speed = 90; 
-    const direction = "left"; // left or right
-
-    const originalImages = Array.from(slider.children);
-
-    if (originalImages.length === 0) return;
-
-    // Duplicate original images
-    originalImages.forEach((item) => {
-        const clone = item.cloneNode(true);
-        clone.setAttribute("aria-hidden", "true");
-        slider.appendChild(clone);
-    });
-
-    let position = 0;
-    let lastTime = 0;
-    let loopWidth = 0;
-    let isPaused = false;
-
-    // Calculate original images width
-    function calculateWidth() {
-
-        loopWidth = 0;
-
-        originalImages.forEach((item) => {
-            loopWidth += item.getBoundingClientRect().width;
-        });
-
-        const gap = parseFloat(getComputedStyle(slider).gap) || 0;
-
-        loopWidth += gap * originalImages.length;
-
-        // Starting position for right movement
-        if (direction === "right") {
-            position = loopWidth;
-        }
-
-    }
-
+prevBtn.addEventListener("click", () => {
+  currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+  updateSlider();
+});
     // Animation
     function animateSlider(timestamp) {
 

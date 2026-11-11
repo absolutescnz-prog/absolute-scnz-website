@@ -24,26 +24,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-const track = document.getElementById("track");
-const prevBtn = document.getElementById("prev");
-const nextBtn = document.getElementById("next");
+document.addEventListener("DOMContentLoaded", function () {
 
-const totalSlides = track.children.length;
-let currentIndex = 0;
+    const track = document.getElementById("track");
+    const prevBtn = document.getElementById("prev");
+    const nextBtn = document.getElementById("next");
 
-function updateSlider() {
-  track.style.transform = `translateX(-${currentIndex * 100}%)`;
-}
+    if (!track || !prevBtn || !nextBtn) return;
 
-nextBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % totalSlides;
-  updateSlider();
+    const slides = track.querySelectorAll("img");
+    const totalSlides = slides.length;
+
+    let currentIndex = 0;
+
+    // Update slider position
+    function updateSlider() {
+
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    }
+
+    // Next button
+    nextBtn.addEventListener("click", function () {
+
+        currentIndex++;
+
+        if (currentIndex >= totalSlides) {
+            currentIndex = 0;
+        }
+
+        updateSlider();
+
+    });
+
+    // Previous button
+    prevBtn.addEventListener("click", function () {
+
+        currentIndex--;
+
+        if (currentIndex < 0) {
+            currentIndex = totalSlides - 1;
+        }
+
+        updateSlider();
+
+    });
+
+    // Initial position
+    updateSlider();
+
 });
 
-prevBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-  updateSlider();
-});
+
     // Animation
     function animateSlider(timestamp) {
 

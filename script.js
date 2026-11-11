@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
 
     const slides = document.querySelectorAll("#slider .slide");
@@ -19,115 +20,94 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    // Automatically change image every 6 seconds
-    setInterval(showNextSlide, 6000);
+    // Automatically change image every 4 seconds
+    setInterval(showNextSlide, 3000);
 
 });
-
-
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
+  const track = document.getElementById('centerTrack');
+  if (!track) { console.error('centerTrack nahi mila, HTML ka id check karo'); return; }
 
-    const track = document.getElementById('centerTrack');
+  const total    = track.children.length;  
+  const delay    = 3000;                    
+  const duration = 700;                     
+  let index = 0;
+  let timer = null;
 
-    if (!track) {
-        console.error('centerTrack nahi mila!');
-        return;
+  // Smooth loop ke liye pehli slide ki copy end mein
+  track.appendChild(track.firstElementChild.cloneNode(true));
+
+  const next = () => {
+    index++;
+    track.style.transition = `transform ${duration}ms ease-in-out`;
+    track.style.transform  = `translateX(-${index * 100}%)`;
+  };
+
+  track.addEventListener('transitionend', () => {
+    if (index >= total) {
+      track.style.transition = 'none';
+      index = 0;
+      track.style.transform  = 'translateX(0)';
     }
+  });
 
-    // Only first 3 images
-    const slides = Array.from(track.children).slice(0, 3);
+  const start = () => { stop(); timer = setInterval(next, delay); };
+  const stop  = () => { if (timer) clearInterval(timer); timer = null; };
 
-    const total = slides.length;
-    const delay = 3000;
-    const duration = 700;
-
-    if (total !== 3) {
-        console.error('Exactly 3 slides required!');
-        return;
-    }
-
-    let index = 0;
-    let timer = null;
-
-    // Keep only 3 original slides
-    track.replaceChildren(...slides);
-
-    // Clone first image for smooth infinite loop
-    track.appendChild(slides[0].cloneNode(true));
-
-    function nextSlide() {
-
-        index++;
-
-        const slideWidth = slides[0].getBoundingClientRect().width;
-
-        track.style.transition =
-            `transform ${duration}ms ease-in-out`;
-
-        track.style.transform =
-            `translate3d(-${index * slideWidth}px, 0, 0)`;
-    }
-
-    // Reset after third image
-    track.addEventListener('transitionend', (event) => {
-
-        if (event.propertyName !== 'transform') return;
-
-        if (index === total) {
-
-            track.style.transition = 'none';
-
-            index = 0;
-
-            track.style.transform = 'translate3d(0, 0, 0)';
-
-        }
-
-    });
-
-    function startSlider() {
-
-        stopSlider();
-
-        timer = setInterval(nextSlide, delay);
-
-    }
-
-    function stopSlider() {
-
-        if (timer !== null) {
-            clearInterval(timer);
-            timer = null;
-        }
-
-    }
-
-    // Recalculate on resize
-    window.addEventListener('resize', () => {
-
-        stopSlider();
-
-        track.style.transition = 'none';
-
-        index = 0;
-
-        track.style.transform = 'translate3d(0, 0, 0)';
-
-        startSlider();
-
-    });
-
-    // Start automatic slider
-    startSlider();
-
-    console.log('3 Image Infinite Slider Started!');
-
+  start();
+ 
 });
 
 
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const slider = document.getElementById("weddingSlider");
+
+    if (!slider) return;
+
+    // SETTINGS
+    const speed = 90; 
+    const direction = "left"; // left or right
+
+    const originalImages = Array.from(slider.children);
+
+    if (originalImages.length === 0) return;
+
+    // Duplicate original images
+    originalImages.forEach((item) => {
+        const clone = item.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        slider.appendChild(clone);
+    });
+
+    let position = 0;
+    let lastTime = 0;
+    let loopWidth = 0;
+    let isPaused = false;
+
+    // Calculate original images width
+    function calculateWidth() {
+
+        loopWidth = 0;
+
+        originalImages.forEach((item) => {
+            loopWidth += item.getBoundingClientRect().width;
+        });
+
+        const gap = parseFloat(getComputedStyle(slider).gap) || 0;
+
+        loopWidth += gap * originalImages.length;
+
+        // Starting position for right movement
+        if (direction === "right") {
+            position = loopWidth;
+        }
+
+    }
 
     // Animation
     function animateSlider(timestamp) {

@@ -26,67 +26,92 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
 
-    const track = document.getElementById("sliderTrack");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
+document.addEventListener('DOMContentLoaded', () => {
 
-    if (!track || !prevBtn || !nextBtn) {
-        console.error("Slider elements missing!");
+    const track = document.getElementById('centerTrack');
+
+    if (!track) {
+        console.error('centerTrack nahi mila, HTML ka id check karo');
         return;
     }
 
-    const slides = track.querySelectorAll(".slide");
-    const totalSlides = slides.length;
+    // Sirf pehli 3 original photos select karo
+    const slides = Array.from(track.children).slice(0, 3);
 
-    let currentIndex = 0;
+    const total = slides.length;
+    const delay = 3000;
+    const duration = 700;
 
-    // Slide movement function
-    function moveSlider() {
+    let index = 0;
+    let timer = null;
 
-        const slideWidth = slides[0].getBoundingClientRect().width;
-
-        track.style.transform =
-            "translate3d(-" + (currentIndex * slideWidth) + "px, 0, 0)";
-
+    if (total !== 3) {
+        console.error('Slider mein 3 images honi chahiye');
+        return;
     }
 
-    // Next button click
-    nextBtn.addEventListener("click", function (event) {
+    // Baaki extra photos remove karo
+    track.innerHTML = '';
 
-        event.preventDefault();
+    // Sirf 3 photos wapas add karo
+    slides.forEach(slide => {
+        track.appendChild(slide);
+    });
 
-        currentIndex = (currentIndex + 1) % totalSlides;
+    // First slide ki copy end mein add karo
+    track.appendChild(slides[0].cloneNode(true));
 
-        moveSlider();
+    // Next slide
+    const next = () => {
 
-        console.log("Current Slide:", currentIndex + 1);
+        index++;
+
+        track.style.transition = `transform ${duration}ms ease-in-out`;
+
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+    };
+
+    // Smooth infinite loop
+    track.addEventListener('transitionend', () => {
+
+        if (index >= total) {
+
+            track.style.transition = 'none';
+
+            index = 0;
+
+            track.style.transform = 'translateX(0)';
+
+        }
 
     });
 
-    // Previous button click
-    prevBtn.addEventListener("click", function (event) {
+    // Start slider
+    const start = () => {
 
-        event.preventDefault();
+        stop();
 
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        timer = setInterval(next, delay);
 
-        moveSlider();
+    };
 
-        console.log("Current Slide:", currentIndex + 1);
+    // Stop slider
+    const stop = () => {
 
-    });
+        if (timer) {
+            clearInterval(timer);
+        }
 
-    // Handle browser resize
-    window.addEventListener("resize", moveSlider);
+        timer = null;
 
-    // Initial setup
-    moveSlider();
+    };
 
-    console.log("Image Slider Ready!");
+    start();
 
 });
+
 
 
 

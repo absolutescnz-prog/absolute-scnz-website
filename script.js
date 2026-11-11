@@ -25,74 +25,69 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Get HTML elements
-    const sliderWindow = document.getElementById("sliderWindow");
     const track = document.getElementById("sliderTrack");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
 
-    // Check elements
-    if (!sliderWindow || !track || !prevBtn || !nextBtn) {
-        console.error("Slider elements not found!");
+    if (!track || !prevBtn || !nextBtn) {
+        console.error("Slider elements missing!");
         return;
     }
 
-    // Get all slides
-    const slides = track.children;
+    const slides = track.querySelectorAll(".slide");
     const totalSlides = slides.length;
 
-    if (totalSlides === 0) return;
-
-    // Current slide
     let currentIndex = 0;
 
-    // Update slider position
-    function updateSlider() {
+    // Slide movement function
+    function moveSlider() {
 
-        const slideWidth = sliderWindow.clientWidth;
+        const slideWidth = slides[0].getBoundingClientRect().width;
 
         track.style.transform =
-            `translateX(-${currentIndex * slideWidth}px)`;
+            "translate3d(-" + (currentIndex * slideWidth) + "px, 0, 0)";
 
     }
 
-    // Next button
-    nextBtn.addEventListener("click", function () {
+    // Next button click
+    nextBtn.addEventListener("click", function (event) {
 
-        currentIndex++;
+        event.preventDefault();
 
-        if (currentIndex >= totalSlides) {
-            currentIndex = 0;
-        }
+        currentIndex = (currentIndex + 1) % totalSlides;
 
-        updateSlider();
+        moveSlider();
 
-    });
-
-    // Previous button
-    prevBtn.addEventListener("click", function () {
-
-        currentIndex--;
-
-        if (currentIndex < 0) {
-            currentIndex = totalSlides - 1;
-        }
-
-        updateSlider();
+        console.log("Current Slide:", currentIndex + 1);
 
     });
 
-    // Update position when screen resizes
-    window.addEventListener("resize", updateSlider);
+    // Previous button click
+    prevBtn.addEventListener("click", function (event) {
 
-    // Initial position
-    updateSlider();
+        event.preventDefault();
 
-    console.log("3 Image Slider Initialized Successfully!");
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+
+        moveSlider();
+
+        console.log("Current Slide:", currentIndex + 1);
+
+    });
+
+    // Handle browser resize
+    window.addEventListener("resize", moveSlider);
+
+    // Initial setup
+    moveSlider();
+
+    console.log("Image Slider Ready!");
 
 });
+
 
 
     // Animation

@@ -24,27 +24,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-const track = document.getElementById("track");
-const prevBtn = document.getElementById("prev");
-const nextBtn = document.getElementById("next");
+let current = 0;
 
-const total = track.children.length; // 3 images
-let index = 0;
+function showSlide(n) {
+  const slides = document.querySelectorAll(".slide");
 
-function showSlide() {
-  track.style.transform = `translateX(-${index * 100}%)`;
+  slides.forEach((slide, i) => {
+    slide.classList.toggle("opacity-100", i === n);
+    slide.classList.toggle("opacity-0", i !== n);
+  });
 }
 
-nextBtn.addEventListener("click", () => {
-  index = (index + 1) % total;          // last ke baad first pe
-  showSlide();
-});
+function nextSlide() {
+  const total = document.querySelectorAll(".slide").length;
+  current = (current + 1) % total;
+  showSlide(current);
+}
 
-prevBtn.addEventListener("click", () => {
-  index = (index - 1 + total) % total;  // first se peeche last pe
-  showSlide();
-});
-
+function prevSlide() {
+  const total = document.querySelectorAll(".slide").length;
+  current = (current - 1 + total) % total;
+  showSlide(current);
+}
 
 
 document.addEventListener("DOMContentLoaded", () => {

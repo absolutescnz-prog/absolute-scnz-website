@@ -232,81 +232,66 @@
   </div>
 </section>
 
-<section id="centerSlider" class="relative w-full min-h-screen bg-black flex items-center justify-center overflow-hidden">
 
-    <!-- SLIDER CONTAINER -->
+<section id="centerSlider"
+    class="w-full min-h-screen bg-black flex items-center justify-center">
+
     <div id="sliderWindow"
-         class="relative w-[90vw] md:w-[50vw] h-[50vh] overflow-hidden rounded-lg">
+        class="relative w-[90vw] md:w-[50vw] h-[50vh] overflow-hidden rounded-lg">
 
         <!-- SLIDER TRACK -->
         <div id="sliderTrack"
-             class="flex w-full h-full transition-transform duration-700 ease-in-out">
+            class="flex h-full transition-transform duration-700 ease-in-out">
 
             <!-- IMAGE 1 -->
-            <div class="flex-[0_0_100%] w-full h-full">
-                <img
-                    src="https://res.cloudinary.com/xabovopu/image/upload/v1794340361/6.jpg"
-                    alt="Slide 1"
+            <div class="slide min-w-full h-full shrink-0">
+                <img src="https://res.cloudinary.com/xabovopu/image/upload/v1794340361/6.jpg"
                     class="w-full h-full object-cover"
-                >
+                    alt="Slide 1">
             </div>
 
             <!-- IMAGE 2 -->
-            <div class="flex-[0_0_100%] w-full h-full">
-                <img
-                    src="https://res.cloudinary.com/xabovopu/image/upload/v1794340361/9.jpg"
-                    alt="Slide 2"
+            <div class="slide min-w-full h-full shrink-0">
+                <img src="https://res.cloudinary.com/xabovopu/image/upload/v1794340361/9.jpg"
                     class="w-full h-full object-cover"
-                >
+                    alt="Slide 2">
             </div>
 
             <!-- IMAGE 3 -->
-            <div class="flex-[0_0_100%] w-full h-full">
-                <img
-                    src="https://res.cloudinary.com/xabovopu/image/upload/v1794340361/7.jpg"
-                    alt="Slide 3"
+            <div class="slide min-w-full h-full shrink-0">
+                <img src="https://res.cloudinary.com/xabovopu/image/upload/v1794340361/7.jpg"
                     class="w-full h-full object-cover"
-                >
+                    alt="Slide 3">
             </div>
 
         </div>
 
-        <!-- LEFT BUTTON -->
-        <button
-            type="button"
-            id="prevBtn"
-            aria-label="Previous image"
-            class="absolute left-3 top-1/2 -translate-y-1/2 z-10
-                   w-11 h-11 rounded-full bg-black/60 text-white
-                   flex items-center justify-center text-2xl
-                   hover:bg-black/90 transition duration-300">
+        <!-- PREVIOUS BUTTON -->
+        <button type="button" id="prevBtn"
+            class="absolute z-30 left-3 top-1/2 -translate-y-1/2
+            bg-black/70 text-white w-12 h-12 rounded-full
+            flex items-center justify-center text-2xl cursor-pointer">
             &#10094;
         </button>
 
-        <!-- RIGHT BUTTON -->
-        <button
-            type="button"
-            id="nextBtn"
-            aria-label="Next image"
-            class="absolute right-3 top-1/2 -translate-y-1/2 z-10
-                   w-11 h-11 rounded-full bg-black/60 text-white
-                   flex items-center justify-center text-2xl
-                   hover:bg-black/90 transition duration-300">
+        <!-- NEXT BUTTON -->
+        <button type="button" id="nextBtn"
+            class="absolute z-30 right-3 top-1/2 -translate-y-1/2
+            bg-black/70 text-white w-12 h-12 rounded-full
+            flex items-center justify-center text-2xl cursor-pointer">
             &#10095;
         </button>
 
         <!-- CENTER TEXT -->
-        <div class="absolute inset-0 z-[5] flex flex-col
-                    items-center justify-center text-center
-                    pointer-events-none px-3">
+        <div class="absolute inset-0 z-20 pointer-events-none
+            flex flex-col items-center justify-center text-center">
 
-            <h2 class="text-white text-xl sm:text-2xl md:text-3xl
-                       font-semibold tracking-wider">
+            <h2 class="text-white text-xl md:text-3xl font-semibold tracking-wider">
                 UNSCRIPTED / RAW / REAL
             </h2>
 
             <p class="mt-5 bg-[#0b666a] text-white px-6 py-4
-                      text-xs sm:text-sm tracking-[3px]">
+                text-xs md:text-sm tracking-[3px]">
                 CLICK THE IMAGE FOR YOUR PHOTOS
             </p>
 
@@ -315,6 +300,9 @@
     </div>
 
 </section>
+
+
+
 
 
 <section id="lastslide"

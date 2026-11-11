@@ -24,36 +24,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+const track = document.getElementById("track");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
 
-    const slides = document.querySelectorAll("#slider .slide");
+const total = track.children.length; // 3 images
+let index = 0;
 
-    let currentIndex = 0;
+function showSlide() {
+  track.style.transform = `translateX(-${index * 100}%)`;
+}
 
-    function showNextSlide() {
+nextBtn.addEventListener("click", () => {
+  index = (index + 1) % total;          // last ke baad first pe
+  showSlide();
+});
 
-        // Current image hide
-
-        slides[currentIndex].classList.remove("opacity-100");
-
-        slides[currentIndex].classList.add("opacity-0");
-
-        // Next image select
-
-        currentIndex = (currentIndex + 1) % slides.length;
-
-        // Next image show
-
-        slides[currentIndex].classList.remove("opacity-0");
-
-        slides[currentIndex].classList.add("opacity-100");
-
-    }
-
-    // Automatically change image every 6 seconds
-
-    setInterval(showNextSlide, 6000);
-
+prevBtn.addEventListener("click", () => {
+  index = (index - 1 + total) % total;  // first se peeche last pe
+  showSlide();
 });
 
 

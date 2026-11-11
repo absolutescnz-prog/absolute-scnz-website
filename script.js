@@ -24,23 +24,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    const track = document.getElementById("track");
-    const prevBtn = document.getElementById("prev");
-    const nextBtn = document.getElementById("next");
+    // Get HTML elements
+    const sliderWindow = document.getElementById("sliderWindow");
+    const track = document.getElementById("sliderTrack");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
 
-    if (!track || !prevBtn || !nextBtn) return;
+    // Check elements
+    if (!sliderWindow || !track || !prevBtn || !nextBtn) {
+        console.error("Slider elements not found!");
+        return;
+    }
 
-    const slides = track.querySelectorAll("img");
+    // Get all slides
+    const slides = track.children;
     const totalSlides = slides.length;
 
+    if (totalSlides === 0) return;
+
+    // Current slide
     let currentIndex = 0;
 
     // Update slider position
     function updateSlider() {
 
-        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        const slideWidth = sliderWindow.clientWidth;
+
+        track.style.transform =
+            `translateX(-${currentIndex * slideWidth}px)`;
 
     }
 
@@ -70,8 +84,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
+    // Update position when screen resizes
+    window.addEventListener("resize", updateSlider);
+
     // Initial position
     updateSlider();
+
+    console.log("3 Image Slider Initialized Successfully!");
 
 });
 
